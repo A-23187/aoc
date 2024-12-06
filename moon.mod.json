@@ -1,0 +1,13 @@
+{
+  "name": "A-23187/aoc",
+  "version": "0.1.0",
+  "deps": {
+    "moonbitlang/x": "0.4.13"
+  },
+  "readme": "README.md",
+  "repository": "https://github.com/A-23187/aoc/tree/2024",
+  "license": "MIT",
+  "keywords": [],
+  "description": "The writeups of Advent of Code 2024 in moonbit.",
+  "source": "src"
+}
