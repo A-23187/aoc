@@ -7,43 +7,80 @@ fn input() -> Array[String]! {
   content.split("\n").collect()
 }
 
-///| part 1
-fn count_visited_position(map : Array[String]) -> Int {
-  let (r, c) = (fn() {
-    for i = 0; i < map.length(); i = i + 1 {
-      for j = 0; j < map[i].length(); j = j + 1 {
-        if map[i][j] == '^' {
-          return (i, j)
-        }
+///|
+fn get_guard_starting_position(map : Array[String]) -> (Int, Int) {
+  for i = 0; i < map.length(); i = i + 1 {
+    for j = 0; j < map[i].length(); j = j + 1 {
+      if map[i][j] == '^' {
+        return (i, j)
       }
     }
-    return (-1, -1)
-  })()
-  let s : @hashset.T[(Int, Int)] = @hashset.new()
+  }
+  return (-1, -1)
+}
+
+///| part 1: additional_obstacle = None, part 2: additional_obstacle = Some(i, j)
+fn get_guard_visited_positions(
+  map : Array[String],
+  starting_position : (Int, Int),
+  additional_obstacle? : (Int, Int)
+) -> @hashset.T[(Int, Int)] {
+  let (r, c) = starting_position
+  let positions : @hashset.T[(Int, Int)] = @hashset.new()
+  let positions_with_direction : @hashset.T[(Int, Int, Int)] = @hashset.new()
   let d = [-1, 0, 1, 0, -1]
-  for i = r, j = c, k = 0; true; {
+  let stuck_in_loop = for i = r, j = c, k = 0; true; {
+    if additional_obstacle != None &&
+      positions_with_direction.contains((i, j, k)) {
+      break true
+    }
     if i >= 0 && i < map.length() && j >= 0 && j < map[i].length() {
-      if map[i][j] != '#' {
-        s.add((i, j))
+      if map[i][j] != '#' && Some((i, j)) != additional_obstacle {
+        positions.add((i, j))
+        if additional_obstacle != None {
+          positions_with_direction.add((i, j, k))
+        }
         continue i + d[k], j + d[k + 1], k
       } else {
         let kk = (k + 1) % 4
         continue i - d[k] + d[kk], j - d[k + 1] + d[kk + 1], kk
       }
     } else {
-      break
+      break false
     }
+  } else { // unreachable
+    false
   }
-  s.size()
+  if stuck_in_loop {
+    @hashset.new()
+  } else {
+    positions
+  }
 }
 
-///|
-fn count_possible_obstacle_position(map : Array[String]) -> Int {
-  map.length()
+///| part 1
+fn count_guard_visited_positions(map : Array[String]) -> Int {
+  get_guard_visited_positions(map, get_guard_starting_position(map)).size()
+}
+
+///| part 2
+fn count_possible_obstacle_positions(map : Array[String]) -> Int {
+  let mut cnt = 0
+  let starting_position = get_guard_starting_position(map)
+  for pos in get_guard_visited_positions(map, starting_position) {
+    if get_guard_visited_positions(
+        map,
+        starting_position,
+        additional_obstacle=pos,
+      ).is_empty() {
+      cnt = cnt + 1
+    }
+  }
+  cnt
 }
 
 test {
   let map = input!()
-  assert_eq!(count_visited_position(map), 5516)
-  println(count_possible_obstacle_position(map))
+  assert_eq!(count_guard_visited_positions(map), 5516)
+  assert_eq!(count_possible_obstacle_positions(map), 2008)
 }
