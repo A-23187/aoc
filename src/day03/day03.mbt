@@ -6,7 +6,7 @@ fn input() -> String! {
   @fs.read_file_to_string!(path="input/day03.txt")
 }
 
-///|
+///| part 1
 fn sum_of_valid_mul(str : String) -> Int {
   let mut sum = 0
   let mut i = 0

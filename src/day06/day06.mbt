@@ -7,7 +7,7 @@ fn input() -> Array[String]! {
   content.split("\n").collect()
 }
 
-///|
+///| part 1
 fn count_visited_position(map : Array[String]) -> Int {
   let (r, c) = (fn() {
     for i = 0; i < map.length(); i = i + 1 {

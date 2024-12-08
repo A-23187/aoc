@@ -7,7 +7,7 @@ fn input() -> Array[String]! {
   content.split("\n").collect()
 }
 
-///|
+///| part 1
 fn xmas_count(board : Array[String]) -> Int {
   let mut cnt = 0
   for i = 0; i < board.length(); i = i + 1 {
@@ -39,7 +39,7 @@ fn xmas_count(board : Array[String]) -> Int {
   cnt
 }
 
-///|
+///| part 2
 fn x_mas_count(board : Array[String]) -> Int {
   let mut cnt = 0
   for i = 1; i < board.length() - 1; i = i + 1 {

@@ -23,7 +23,7 @@ fn input() -> (Array[Int], Array[Int])! {
   (nums1, nums2)
 }
 
-///|
+///| part 1
 fn total_distance(nums1 : Array[Int], nums2 : Array[Int]) -> Int {
   nums1.sort()
   nums2.sort()
@@ -39,7 +39,7 @@ fn total_distance(nums1 : Array[Int], nums2 : Array[Int]) -> Int {
   )
 }
 
-///|
+///| part 2
 fn total_similarity(nums1 : Array[Int], nums2 : Array[Int]) -> Int {
   let cnt : @hashmap.T[Int, Int] = @hashmap.new()
   for num in nums2 {

@@ -22,7 +22,7 @@ fn input() -> Array[(Int64, Array[Int64])]! {
   result
 }
 
-///|
+///| part 1: support_concat = false, part 2: support_concat = true
 fn total_calibration(
   equations : Array[(Int64, Array[Int64])],
   support_concat~ : Bool = false

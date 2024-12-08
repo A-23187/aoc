@@ -25,7 +25,7 @@ fn get_antennas(map : Array[String]) -> @hashmap.T[Char, Array[(Int, Int)]] {
 }
 
 ///| part 1
-fn num_of_unique_antinode(map : Array[String]) -> Int {
+fn num_of_unique_antinode_1(map : Array[String]) -> Int {
   let antennas = get_antennas(map)
   let s : @hashset.T[(Int, Int)] = @hashset.new()
   for a in antennas {
@@ -47,7 +47,7 @@ fn num_of_unique_antinode(map : Array[String]) -> Int {
 }
 
 ///| part 2
-fn num_of_unique_antinode2(map : Array[String]) -> Int {
+fn num_of_unique_antinode_2(map : Array[String]) -> Int {
   let antennas = get_antennas(map)
   let s : @hashset.T[(Int, Int, Char)] = @hashset.new()
   for a in antennas {
@@ -79,6 +79,6 @@ fn num_of_unique_antinode2(map : Array[String]) -> Int {
 
 test {
   let map = input!()
-  assert_eq!(num_of_unique_antinode(map), 280)
-  assert_eq!(num_of_unique_antinode2(map), 958)
+  assert_eq!(num_of_unique_antinode_1(map), 280)
+  assert_eq!(num_of_unique_antinode_2(map), 958)
 }

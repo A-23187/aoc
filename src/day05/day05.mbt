@@ -68,7 +68,7 @@ fn correct(m : @hashmap.T[Int, @hashset.T[Int]], update : Array[Int]) -> Unit {
   }
 }
 
-///|
+///| part 1: need_correct = false, part 2: need_correct = true
 fn sum_of_middle_page_number(
   rules : Array[Array[Int]],
   updates : Array[Array[Int]],

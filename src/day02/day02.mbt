@@ -18,7 +18,7 @@ fn input() -> Array[Array[Int]]! {
   result
 }
 
-///|
+///| part 1
 fn safe_report_count(reports : Array[Array[Int]]) -> Int {
   reports.fold(
     init=0,
@@ -46,7 +46,7 @@ fn safe_report_count(reports : Array[Array[Int]]) -> Int {
   )
 }
 
-///|
+///| part 2
 fn almost_safe_report_count(reports : Array[Array[Int]]) -> Int {
   fn check(
     report : Array[Int],
